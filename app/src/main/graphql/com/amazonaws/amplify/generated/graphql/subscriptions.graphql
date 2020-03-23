@@ -1,0 +1,103 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateStore {
+  onCreateStore {
+    id
+    name
+    location
+    products {
+      items {
+        id
+        barcodeNumber
+        name
+        quantity
+        price
+      }
+      nextToken
+    }
+  }
+}
+subscription OnUpdateStore {
+  onUpdateStore {
+    id
+    name
+    location
+    products {
+      items {
+        id
+        barcodeNumber
+        name
+        quantity
+        price
+      }
+      nextToken
+    }
+  }
+}
+subscription OnDeleteStore {
+  onDeleteStore {
+    id
+    name
+    location
+    products {
+      items {
+        id
+        barcodeNumber
+        name
+        quantity
+        price
+      }
+      nextToken
+    }
+  }
+}
+subscription OnCreateProduct {
+  onCreateProduct {
+    id
+    barcodeNumber
+    name
+    quantity
+    price
+    store {
+      id
+      name
+      location
+      products {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnUpdateProduct {
+  onUpdateProduct {
+    id
+    barcodeNumber
+    name
+    quantity
+    price
+    store {
+      id
+      name
+      location
+      products {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteProduct {
+  onDeleteProduct {
+    id
+    barcodeNumber
+    name
+    quantity
+    price
+    store {
+      id
+      name
+      location
+      products {
+        nextToken
+      }
+    }
+  }
+}

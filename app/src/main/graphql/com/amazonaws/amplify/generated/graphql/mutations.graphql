@@ -1,0 +1,121 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateStore(
+  $input: CreateStoreInput!
+  $condition: ModelStoreConditionInput
+) {
+  createStore(input: $input, condition: $condition) {
+    id
+    name
+    location
+    products {
+      items {
+        id
+        barcodeNumber
+        name
+        quantity
+        price
+      }
+      nextToken
+    }
+  }
+}
+mutation UpdateStore(
+  $input: UpdateStoreInput!
+  $condition: ModelStoreConditionInput
+) {
+  updateStore(input: $input, condition: $condition) {
+    id
+    name
+    location
+    products {
+      items {
+        id
+        barcodeNumber
+        name
+        quantity
+        price
+      }
+      nextToken
+    }
+  }
+}
+mutation DeleteStore(
+  $input: DeleteStoreInput!
+  $condition: ModelStoreConditionInput
+) {
+  deleteStore(input: $input, condition: $condition) {
+    id
+    name
+    location
+    products {
+      items {
+        id
+        barcodeNumber
+        name
+        quantity
+        price
+      }
+      nextToken
+    }
+  }
+}
+mutation CreateProduct(
+  $input: CreateProductInput!
+  $condition: ModelProductConditionInput
+) {
+  createProduct(input: $input, condition: $condition) {
+    id
+    barcodeNumber
+    name
+    quantity
+    price
+    store {
+      id
+      name
+      location
+      products {
+        nextToken
+      }
+    }
+  }
+}
+mutation UpdateProduct(
+  $input: UpdateProductInput!
+  $condition: ModelProductConditionInput
+) {
+  updateProduct(input: $input, condition: $condition) {
+    id
+    barcodeNumber
+    name
+    quantity
+    price
+    store {
+      id
+      name
+      location
+      products {
+        nextToken
+      }
+    }
+  }
+}
+mutation DeleteProduct(
+  $input: DeleteProductInput!
+  $condition: ModelProductConditionInput
+) {
+  deleteProduct(input: $input, condition: $condition) {
+    id
+    barcodeNumber
+    name
+    quantity
+    price
+    store {
+      id
+      name
+      location
+      products {
+        nextToken
+      }
+    }
+  }
+}

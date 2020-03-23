@@ -1,0 +1,102 @@
+# this is an auto generated file. This will be overwritten
+query GetStore($id: ID!) {
+  getStore(id: $id) {
+    id
+    name
+    location
+    products {
+      items {
+        id
+        barcodeNumber
+        name
+        quantity
+        price
+      }
+      nextToken
+    }
+  }
+}
+query ListStores(
+  $filter: ModelStoreFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listStores(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      location
+      products {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+query GetProduct($id: ID!) {
+  getProduct(id: $id) {
+    id
+    barcodeNumber
+    name
+    quantity
+    price
+    store {
+      id
+      name
+      location
+      products {
+        nextToken
+      }
+    }
+  }
+}
+query ListProducts(
+  $filter: ModelProductFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      barcodeNumber
+      name
+      quantity
+      price
+      store {
+        id
+        name
+        location
+      }
+    }
+    nextToken
+  }
+}
+query ByBarcodeNumber(
+  $barcodeNumber: String
+  $sortDirection: ModelSortDirection
+  $filter: ModelProductFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  byBarcodeNumber(
+    barcodeNumber: $barcodeNumber
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      barcodeNumber
+      name
+      quantity
+      price
+      store {
+        id
+        name
+        location
+      }
+    }
+    nextToken
+  }
+}
