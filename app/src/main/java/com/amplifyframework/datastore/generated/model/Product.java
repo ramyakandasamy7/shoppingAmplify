@@ -19,33 +19,36 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 /** This is an auto generated class representing the Product type in your schema. */
 @SuppressWarnings("all")
 @ModelConfig(pluralName = "Products")
-@Index(name = "byBarcode", fields = {"barcodeNumber"})
 public final class Product implements Model {
   public static final QueryField ID = field("id");
-  public static final QueryField BARCODE_NUMBER = field("barcodeNumber");
   public static final QueryField NAME = field("name");
+  public static final QueryField BARCODE = field("barcode");
+  public static final QueryField STORE = field("productStoreId");
   public static final QueryField QUANTITY = field("quantity");
   public static final QueryField PRICE = field("price");
-  public static final QueryField STORE = field("productStoreId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="String", isRequired = true) String barcodeNumber;
   private final @ModelField(targetType="String") String name;
-  private final @ModelField(targetType="Int") Integer quantity;
-  private final @ModelField(targetType="Float") Float price;
+  private final @ModelField(targetType="String") String barcode;
   private final @ModelField(targetType="Store") @BelongsTo(targetName = "productStoreId", type = Store.class) Store store;
+  private final @ModelField(targetType="Float") Float quantity;
+  private final @ModelField(targetType="Float") Float price;
   public String getId() {
       return id;
-  }
-  
-  public String getBarcodeNumber() {
-      return barcodeNumber;
   }
   
   public String getName() {
       return name;
   }
   
-  public Integer getQuantity() {
+  public String getBarcode() {
+      return barcode;
+  }
+  
+  public Store getStore() {
+      return store;
+  }
+  
+  public Float getQuantity() {
       return quantity;
   }
   
@@ -53,17 +56,13 @@ public final class Product implements Model {
       return price;
   }
   
-  public Store getStore() {
-      return store;
-  }
-  
-  private Product(String id, String barcodeNumber, String name, Integer quantity, Float price, Store store) {
+  private Product(String id, String name, String barcode, Store store, Float quantity, Float price) {
     this.id = id;
-    this.barcodeNumber = barcodeNumber;
     this.name = name;
+    this.barcode = barcode;
+    this.store = store;
     this.quantity = quantity;
     this.price = price;
-    this.store = store;
   }
   
   @Override
@@ -75,11 +74,11 @@ public final class Product implements Model {
       } else {
       Product product = (Product) obj;
       return ObjectsCompat.equals(getId(), product.getId()) &&
-              ObjectsCompat.equals(getBarcodeNumber(), product.getBarcodeNumber()) &&
               ObjectsCompat.equals(getName(), product.getName()) &&
+              ObjectsCompat.equals(getBarcode(), product.getBarcode()) &&
+              ObjectsCompat.equals(getStore(), product.getStore()) &&
               ObjectsCompat.equals(getQuantity(), product.getQuantity()) &&
-              ObjectsCompat.equals(getPrice(), product.getPrice()) &&
-              ObjectsCompat.equals(getStore(), product.getStore());
+              ObjectsCompat.equals(getPrice(), product.getPrice());
       }
   }
   
@@ -87,16 +86,16 @@ public final class Product implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
-      .append(getBarcodeNumber())
       .append(getName())
+      .append(getBarcode())
+      .append(getStore())
       .append(getQuantity())
       .append(getPrice())
-      .append(getStore())
       .toString()
       .hashCode();
   }
   
-  public static BarcodeNumberStep builder() {
+  public static BuildStep builder() {
       return new Builder();
   }
   
@@ -131,52 +130,41 @@ public final class Product implements Model {
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
-      barcodeNumber,
       name,
+      barcode,
+      store,
       quantity,
-      price,
-      store);
+      price);
   }
-  public interface BarcodeNumberStep {
-    BuildStep barcodeNumber(String barcodeNumber);
-  }
-  
-
   public interface BuildStep {
     Product build();
     BuildStep id(String id) throws IllegalArgumentException;
     BuildStep name(String name);
-    BuildStep quantity(Integer quantity);
-    BuildStep price(Float price);
+    BuildStep barcode(String barcode);
     BuildStep store(Store store);
+    BuildStep quantity(Float quantity);
+    BuildStep price(Float price);
   }
   
 
-  public static class Builder implements BarcodeNumberStep, BuildStep {
+  public static class Builder implements BuildStep {
     private String id;
-    private String barcodeNumber;
     private String name;
-    private Integer quantity;
-    private Float price;
+    private String barcode;
     private Store store;
+    private Float quantity;
+    private Float price;
     @Override
      public Product build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
         return new Product(
           id,
-          barcodeNumber,
           name,
+          barcode,
+          store,
           quantity,
-          price,
-          store);
-    }
-    
-    @Override
-     public BuildStep barcodeNumber(String barcodeNumber) {
-        Objects.requireNonNull(barcodeNumber);
-        this.barcodeNumber = barcodeNumber;
-        return this;
+          price);
     }
     
     @Override
@@ -186,7 +174,19 @@ public final class Product implements Model {
     }
     
     @Override
-     public BuildStep quantity(Integer quantity) {
+     public BuildStep barcode(String barcode) {
+        this.barcode = barcode;
+        return this;
+    }
+    
+    @Override
+     public BuildStep store(Store store) {
+        this.store = store;
+        return this;
+    }
+    
+    @Override
+     public BuildStep quantity(Float quantity) {
         this.quantity = quantity;
         return this;
     }
@@ -194,12 +194,6 @@ public final class Product implements Model {
     @Override
      public BuildStep price(Float price) {
         this.price = price;
-        return this;
-    }
-    
-    @Override
-     public BuildStep store(Store store) {
-        this.store = store;
         return this;
     }
     
@@ -226,18 +220,13 @@ public final class Product implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String barcodeNumber, String name, Integer quantity, Float price, Store store) {
+    private CopyOfBuilder(String id, String name, String barcode, Store store, Float quantity, Float price) {
       super.id(id);
-      super.barcodeNumber(barcodeNumber)
-        .name(name)
+      super.name(name)
+        .barcode(barcode)
+        .store(store)
         .quantity(quantity)
-        .price(price)
-        .store(store);
-    }
-    
-    @Override
-     public CopyOfBuilder barcodeNumber(String barcodeNumber) {
-      return (CopyOfBuilder) super.barcodeNumber(barcodeNumber);
+        .price(price);
     }
     
     @Override
@@ -246,18 +235,23 @@ public final class Product implements Model {
     }
     
     @Override
-     public CopyOfBuilder quantity(Integer quantity) {
+     public CopyOfBuilder barcode(String barcode) {
+      return (CopyOfBuilder) super.barcode(barcode);
+    }
+    
+    @Override
+     public CopyOfBuilder store(Store store) {
+      return (CopyOfBuilder) super.store(store);
+    }
+    
+    @Override
+     public CopyOfBuilder quantity(Float quantity) {
       return (CopyOfBuilder) super.quantity(quantity);
     }
     
     @Override
      public CopyOfBuilder price(Float price) {
       return (CopyOfBuilder) super.price(price);
-    }
-    
-    @Override
-     public CopyOfBuilder store(Store store) {
-      return (CopyOfBuilder) super.store(store);
     }
   }
   

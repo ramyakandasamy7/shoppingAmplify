@@ -154,69 +154,6 @@
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
-                    },
-                    {
-                        "name": "byBarcodeNumber",
-                        "description": null,
-                        "args": [
-                            {
-                                "name": "barcodeNumber",
-                                "description": null,
-                                "type": {
-                                    "kind": "SCALAR",
-                                    "name": "String",
-                                    "ofType": null
-                                },
-                                "defaultValue": null
-                            },
-                            {
-                                "name": "sortDirection",
-                                "description": null,
-                                "type": {
-                                    "kind": "ENUM",
-                                    "name": "ModelSortDirection",
-                                    "ofType": null
-                                },
-                                "defaultValue": null
-                            },
-                            {
-                                "name": "filter",
-                                "description": null,
-                                "type": {
-                                    "kind": "INPUT_OBJECT",
-                                    "name": "ModelProductFilterInput",
-                                    "ofType": null
-                                },
-                                "defaultValue": null
-                            },
-                            {
-                                "name": "limit",
-                                "description": null,
-                                "type": {
-                                    "kind": "SCALAR",
-                                    "name": "Int",
-                                    "ofType": null
-                                },
-                                "defaultValue": null
-                            },
-                            {
-                                "name": "nextToken",
-                                "description": null,
-                                "type": {
-                                    "kind": "SCALAR",
-                                    "name": "String",
-                                    "ofType": null
-                                },
-                                "defaultValue": null
-                            }
-                        ],
-                        "type": {
-                            "kind": "OBJECT",
-                            "name": "ModelProductConnection",
-                            "ofType": null
-                        },
-                        "isDeprecated": false,
-                        "deprecationReason": null
                     }
                 ],
                 "inputFields": null,
@@ -260,13 +197,9 @@
                         "description": null,
                         "args": [],
                         "type": {
-                            "kind": "NON_NULL",
-                            "name": null,
-                            "ofType": {
-                                "kind": "SCALAR",
-                                "name": "String",
-                                "ofType": null
-                            }
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
@@ -276,13 +209,9 @@
                         "description": null,
                         "args": [],
                         "type": {
-                            "kind": "NON_NULL",
-                            "name": null,
-                            "ofType": {
-                                "kind": "SCALAR",
-                                "name": "String",
-                                "ofType": null
-                            }
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
@@ -373,7 +302,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "barcodeNumber",
+                        "name": "name",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -383,7 +312,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "name",
+                        "name": "barcode",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -397,7 +326,7 @@
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
-                            "name": "ModelIntInput",
+                            "name": "ModelFloatInput",
                             "ofType": null
                         },
                         "defaultValue": null
@@ -923,111 +852,6 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "ModelIntInput",
-                "description": null,
-                "fields": null,
-                "inputFields": [
-                    {
-                        "name": "ne",
-                        "description": null,
-                        "type": {
-                            "kind": "SCALAR",
-                            "name": "Int",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "eq",
-                        "description": null,
-                        "type": {
-                            "kind": "SCALAR",
-                            "name": "Int",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "le",
-                        "description": null,
-                        "type": {
-                            "kind": "SCALAR",
-                            "name": "Int",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "lt",
-                        "description": null,
-                        "type": {
-                            "kind": "SCALAR",
-                            "name": "Int",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "ge",
-                        "description": null,
-                        "type": {
-                            "kind": "SCALAR",
-                            "name": "Int",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "gt",
-                        "description": null,
-                        "type": {
-                            "kind": "SCALAR",
-                            "name": "Int",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "between",
-                        "description": null,
-                        "type": {
-                            "kind": "LIST",
-                            "name": null,
-                            "ofType": {
-                                "kind": "SCALAR",
-                                "name": "Int",
-                                "ofType": null
-                            }
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "attributeExists",
-                        "description": null,
-                        "type": {
-                            "kind": "SCALAR",
-                            "name": "Boolean",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "attributeType",
-                        "description": null,
-                        "type": {
-                            "kind": "ENUM",
-                            "name": "ModelAttributeTypes",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    }
-                ],
-                "interfaces": null,
-                "enumValues": null,
-                "possibleTypes": null
-            },
-            {
-                "kind": "INPUT_OBJECT",
                 "name": "ModelFloatInput",
                 "description": null,
                 "fields": null,
@@ -1225,22 +1049,6 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "barcodeNumber",
-                        "description": null,
-                        "args": [],
-                        "type": {
-                            "kind": "NON_NULL",
-                            "name": null,
-                            "ofType": {
-                                "kind": "SCALAR",
-                                "name": "String",
-                                "ofType": null
-                            }
-                        },
-                        "isDeprecated": false,
-                        "deprecationReason": null
-                    },
-                    {
                         "name": "name",
                         "description": null,
                         "args": [],
@@ -1253,24 +1061,12 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "quantity",
+                        "name": "barcode",
                         "description": null,
                         "args": [],
                         "type": {
                             "kind": "SCALAR",
-                            "name": "Int",
-                            "ofType": null
-                        },
-                        "isDeprecated": false,
-                        "deprecationReason": null
-                    },
-                    {
-                        "name": "price",
-                        "description": null,
-                        "args": [],
-                        "type": {
-                            "kind": "SCALAR",
-                            "name": "Float",
+                            "name": "String",
                             "ofType": null
                         },
                         "isDeprecated": false,
@@ -1283,6 +1079,30 @@
                         "type": {
                             "kind": "OBJECT",
                             "name": "Store",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "quantity",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Float",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "price",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Float",
                             "ofType": null
                         },
                         "isDeprecated": false,
@@ -1665,13 +1485,9 @@
                         "name": "name",
                         "description": null,
                         "type": {
-                            "kind": "NON_NULL",
-                            "name": null,
-                            "ofType": {
-                                "kind": "SCALAR",
-                                "name": "String",
-                                "ofType": null
-                            }
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
                         },
                         "defaultValue": null
                     },
@@ -1679,13 +1495,9 @@
                         "name": "location",
                         "description": null,
                         "type": {
-                            "kind": "NON_NULL",
-                            "name": null,
-                            "ofType": {
-                                "kind": "SCALAR",
-                                "name": "String",
-                                "ofType": null
-                            }
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
                         },
                         "defaultValue": null
                     }
@@ -1846,21 +1658,17 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "barcodeNumber",
+                        "name": "name",
                         "description": null,
                         "type": {
-                            "kind": "NON_NULL",
-                            "name": null,
-                            "ofType": {
-                                "kind": "SCALAR",
-                                "name": "String",
-                                "ofType": null
-                            }
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
                         },
                         "defaultValue": null
                     },
                     {
-                        "name": "name",
+                        "name": "barcode",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -1874,7 +1682,7 @@
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
-                            "name": "Int",
+                            "name": "Float",
                             "ofType": null
                         },
                         "defaultValue": null
@@ -1911,7 +1719,7 @@
                 "fields": null,
                 "inputFields": [
                     {
-                        "name": "barcodeNumber",
+                        "name": "name",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -1921,7 +1729,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "name",
+                        "name": "barcode",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -1935,7 +1743,7 @@
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
-                            "name": "ModelIntInput",
+                            "name": "ModelFloatInput",
                             "ofType": null
                         },
                         "defaultValue": null
@@ -2014,7 +1822,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "barcodeNumber",
+                        "name": "name",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -2024,7 +1832,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "name",
+                        "name": "barcode",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -2038,7 +1846,7 @@
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
-                            "name": "Int",
+                            "name": "Float",
                             "ofType": null
                         },
                         "defaultValue": null
@@ -3074,6 +2882,111 @@
                 "description": null,
                 "fields": null,
                 "inputFields": null,
+                "interfaces": null,
+                "enumValues": null,
+                "possibleTypes": null
+            },
+            {
+                "kind": "INPUT_OBJECT",
+                "name": "ModelIntInput",
+                "description": null,
+                "fields": null,
+                "inputFields": [
+                    {
+                        "name": "ne",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Int",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "eq",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Int",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "le",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Int",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "lt",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Int",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "ge",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Int",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "gt",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Int",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "between",
+                        "description": null,
+                        "type": {
+                            "kind": "LIST",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "Int",
+                                "ofType": null
+                            }
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "attributeExists",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Boolean",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "attributeType",
+                        "description": null,
+                        "type": {
+                            "kind": "ENUM",
+                            "name": "ModelAttributeTypes",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    }
+                ],
                 "interfaces": null,
                 "enumValues": null,
                 "possibleTypes": null

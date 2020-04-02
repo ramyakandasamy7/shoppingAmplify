@@ -24,8 +24,8 @@ public final class Store implements Model {
   public static final QueryField NAME = field("name");
   public static final QueryField LOCATION = field("location");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="String", isRequired = true) String name;
-  private final @ModelField(targetType="String", isRequired = true) String location;
+  private final @ModelField(targetType="String") String name;
+  private final @ModelField(targetType="String") String location;
   private final @ModelField(targetType="Product") @HasMany(associatedWith = "store", type = Product.class) List<Product> products = null;
   public String getId() {
       return id;
@@ -73,7 +73,7 @@ public final class Store implements Model {
       .hashCode();
   }
   
-  public static NameStep builder() {
+  public static BuildStep builder() {
       return new Builder();
   }
   
@@ -108,23 +108,15 @@ public final class Store implements Model {
       name,
       location);
   }
-  public interface NameStep {
-    LocationStep name(String name);
-  }
-  
-
-  public interface LocationStep {
+  public interface BuildStep {
+    Store build();
+    BuildStep id(String id) throws IllegalArgumentException;
+    BuildStep name(String name);
     BuildStep location(String location);
   }
   
 
-  public interface BuildStep {
-    Store build();
-    BuildStep id(String id) throws IllegalArgumentException;
-  }
-  
-
-  public static class Builder implements NameStep, LocationStep, BuildStep {
+  public static class Builder implements BuildStep {
     private String id;
     private String name;
     private String location;
@@ -139,15 +131,13 @@ public final class Store implements Model {
     }
     
     @Override
-     public LocationStep name(String name) {
-        Objects.requireNonNull(name);
+     public BuildStep name(String name) {
         this.name = name;
         return this;
     }
     
     @Override
      public BuildStep location(String location) {
-        Objects.requireNonNull(location);
         this.location = location;
         return this;
     }

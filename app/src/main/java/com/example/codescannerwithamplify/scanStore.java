@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import androidx.fragment.*;
+
 import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -16,9 +16,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 
-public class ScanCodeFragment extends Fragment implements ZXingScannerView.ResultHandler {
+public class scanStore extends Fragment implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
-    sendStore comm;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class ScanCodeFragment extends Fragment implements ZXingScannerView.Resul
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                mScannerView.resumeCameraPreview(ScanCodeFragment.this);
+                mScannerView.resumeCameraPreview(scanStore.this);
             }
         }, 2000);
         Bundle bundle = new Bundle();

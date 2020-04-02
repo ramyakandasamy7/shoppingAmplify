@@ -11,5 +11,18 @@
             "StackId": "arn:aws:cloudformation:us-east-1:903305595860:stack/amplify-codescannerwithampli-codeampl-154341/96c41490-6c8e-11ea-a42a-0ed2247e0ea9",
             "AmplifyAppId": "d3udru3w8metjg"
         }
+    },
+    "rebuild": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-codescannerwithampli-rebuild-71358-authRole",
+            "UnauthRoleArn": "arn:aws:iam::903305595860:role/amplify-codescannerwithampli-rebuild-71358-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::903305595860:role/amplify-codescannerwithampli-rebuild-71358-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-codescannerwithampli-rebuild-71358-deployment",
+            "UnauthRoleName": "amplify-codescannerwithampli-rebuild-71358-unauthRole",
+            "StackName": "amplify-codescannerwithampli-rebuild-71358",
+            "StackId": "arn:aws:cloudformation:us-east-1:903305595860:stack/amplify-codescannerwithampli-rebuild-71358/34aa6eb0-74ec-11ea-8a97-12217e59f19f",
+            "AmplifyAppId": "d1qmius55ek1j5"
+        }
     }
 }

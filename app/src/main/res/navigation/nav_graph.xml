@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.codescannerwithamplify.mainFragment"
+        android:label="mainFragment"
+        tools:layout="@layout/fragment_main"
+       >
+        <action
+            android:id="@+id/action_mainFragment_to_scanCodeFragment"
+            app:destination="@id/scanStoreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scanStoreFragment"
+        android:name="com.example.codescannerwithamplify.scanStore"
+        android:label="scanStoreFragment"
+        tools:layout="@layout/fragment_scan_store" >
+        <action
+            android:id="@+id/action_scanCodeFragment_to_scanProductFragment"
+            app:destination="@id/scannedStoreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scannedStoreFragment"
+        android:name="com.example.codescannerwithamplify.scannedStore"
+        android:label="scannedStoreFragment"
+        tools:layout = "@layout/fragment_scanned_store">
+        <action
+            android:id="@+id/action_scanProductFragment_to_scanProduct"
+            app:destination="@id/scanProduct" />
+    </fragment>
+    <fragment
+        android:id="@+id/scanProduct"
+        android:name="com.example.codescannerwithamplify.scanProduct"
+        android:label="scanProduct"
+        tools:layout = "@layout/fragment_scan_product">
+        <action
+            android:id="@+id/action_scanProduct_to_scannedProduct"
+            app:destination="@id/scannedProduct" />
+    </fragment>
+    <fragment
+        android:id="@+id/scannedProduct"
+        android:name="com.example.codescannerwithamplify.scannedProduct"
+        android:label="scannedProduct"
+        tools:layout = "@layout/fragment_scanned_product"/>
 </navigation>

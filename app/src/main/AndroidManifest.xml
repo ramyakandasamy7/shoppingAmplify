@@ -17,10 +17,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ScanCodeActivity"
-            android:label="@string/title_activity_scan_code"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
 

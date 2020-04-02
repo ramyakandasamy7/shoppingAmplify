@@ -1,20 +1,14 @@
 type Store @model {
   id: ID!
-  name: String!
-  location: String!
-  products: [Product] @connection(name: "storeproducts")
-}
-type Product
-  @model
-  @key(
-    name: "byBarcode"
-    fields: ["barcodeNumber"]
-    queryField: "byBarcodeNumber"
-  ) {
-  id: ID!
-  barcodeNumber: String!
   name: String
-  quantity: Int
+  location: String
+  products: [Product] @connection(name: "StoreProducts")
+}
+type Product @model {
+  id: ID!
+  name: String
+  barcode: String
+  store: Store @connection(name: "StoreProducts")
+  quantity: Float
   price: Float
-  store: Store @connection(name: "storeproducts")
 }

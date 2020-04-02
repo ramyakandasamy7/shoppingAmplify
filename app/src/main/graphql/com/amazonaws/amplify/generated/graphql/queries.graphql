@@ -7,8 +7,8 @@ query GetStore($id: ID!) {
     products {
       items {
         id
-        barcodeNumber
         name
+        barcode
         quantity
         price
       }
@@ -36,10 +36,8 @@ query ListStores(
 query GetProduct($id: ID!) {
   getProduct(id: $id) {
     id
-    barcodeNumber
     name
-    quantity
-    price
+    barcode
     store {
       id
       name
@@ -48,6 +46,8 @@ query GetProduct($id: ID!) {
         nextToken
       }
     }
+    quantity
+    price
   }
 }
 query ListProducts(
@@ -58,44 +58,15 @@ query ListProducts(
   listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      barcodeNumber
       name
-      quantity
-      price
+      barcode
       store {
         id
         name
         location
       }
-    }
-    nextToken
-  }
-}
-query ByBarcodeNumber(
-  $barcodeNumber: String
-  $sortDirection: ModelSortDirection
-  $filter: ModelProductFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  byBarcodeNumber(
-    barcodeNumber: $barcodeNumber
-    sortDirection: $sortDirection
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
-    items {
-      id
-      barcodeNumber
-      name
       quantity
       price
-      store {
-        id
-        name
-        location
-      }
     }
     nextToken
   }

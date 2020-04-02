@@ -7,8 +7,8 @@ subscription OnCreateStore {
     products {
       items {
         id
-        barcodeNumber
         name
+        barcode
         quantity
         price
       }
@@ -24,8 +24,8 @@ subscription OnUpdateStore {
     products {
       items {
         id
-        barcodeNumber
         name
+        barcode
         quantity
         price
       }
@@ -41,8 +41,8 @@ subscription OnDeleteStore {
     products {
       items {
         id
-        barcodeNumber
         name
+        barcode
         quantity
         price
       }
@@ -53,10 +53,8 @@ subscription OnDeleteStore {
 subscription OnCreateProduct {
   onCreateProduct {
     id
-    barcodeNumber
     name
-    quantity
-    price
+    barcode
     store {
       id
       name
@@ -65,15 +63,15 @@ subscription OnCreateProduct {
         nextToken
       }
     }
+    quantity
+    price
   }
 }
 subscription OnUpdateProduct {
   onUpdateProduct {
     id
-    barcodeNumber
     name
-    quantity
-    price
+    barcode
     store {
       id
       name
@@ -82,15 +80,15 @@ subscription OnUpdateProduct {
         nextToken
       }
     }
+    quantity
+    price
   }
 }
 subscription OnDeleteProduct {
   onDeleteProduct {
     id
-    barcodeNumber
     name
-    quantity
-    price
+    barcode
     store {
       id
       name
@@ -99,5 +97,7 @@ subscription OnDeleteProduct {
         nextToken
       }
     }
+    quantity
+    price
   }
 }

@@ -10,8 +10,8 @@ mutation CreateStore(
     products {
       items {
         id
-        barcodeNumber
         name
+        barcode
         quantity
         price
       }
@@ -30,8 +30,8 @@ mutation UpdateStore(
     products {
       items {
         id
-        barcodeNumber
         name
+        barcode
         quantity
         price
       }
@@ -50,8 +50,8 @@ mutation DeleteStore(
     products {
       items {
         id
-        barcodeNumber
         name
+        barcode
         quantity
         price
       }
@@ -65,10 +65,8 @@ mutation CreateProduct(
 ) {
   createProduct(input: $input, condition: $condition) {
     id
-    barcodeNumber
     name
-    quantity
-    price
+    barcode
     store {
       id
       name
@@ -77,6 +75,8 @@ mutation CreateProduct(
         nextToken
       }
     }
+    quantity
+    price
   }
 }
 mutation UpdateProduct(
@@ -85,10 +85,8 @@ mutation UpdateProduct(
 ) {
   updateProduct(input: $input, condition: $condition) {
     id
-    barcodeNumber
     name
-    quantity
-    price
+    barcode
     store {
       id
       name
@@ -97,6 +95,8 @@ mutation UpdateProduct(
         nextToken
       }
     }
+    quantity
+    price
   }
 }
 mutation DeleteProduct(
@@ -105,10 +105,8 @@ mutation DeleteProduct(
 ) {
   deleteProduct(input: $input, condition: $condition) {
     id
-    barcodeNumber
     name
-    quantity
-    price
+    barcode
     store {
       id
       name
@@ -117,5 +115,7 @@ mutation DeleteProduct(
         nextToken
       }
     }
+    quantity
+    price
   }
 }
