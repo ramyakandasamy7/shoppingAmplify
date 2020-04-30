@@ -1,6 +1,8 @@
 
 package com.example.codescannerwithamplify;
 
+        import android.content.Context;
+        import android.content.SharedPreferences;
         import android.os.Bundle;
         import android.os.Handler;
         import android.util.Log;
@@ -29,6 +31,7 @@ public class scannedStore extends Fragment {
     Store selectedStore;
     TextView storeName;
     Button btn;
+    Button transactionButton;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_scanned_store, container, false);
@@ -45,6 +48,25 @@ public class scannedStore extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_scanProductFragment_to_scanProduct, bundle);
             }
         });
+
+        transactionButton = view.findViewById(R.id.transaction_btn);
+        transactionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_scannedStoreFragment_to_transaction);
+            }
+        });
+
+        Button cart_btn;
+        cart_btn= view.findViewById(R.id.buttoncart);
+        cart_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_scannedStoreFragment_to_cartView);
+            }
+        });
+
+
         return view;
     }
 
@@ -70,6 +92,10 @@ public class scannedStore extends Fragment {
                     for (Store store : iterableGraphQLResponse.getData()) {
                         Log.i("Store is", "List result: " + store.getName());
                         selectedStore = store;
+                        Context context = getActivity();
+                        SharedPreferences sharedPref = context.getSharedPreferences("StoreID", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString("StoreName", store.getName()).commit();
                         setText(store.getName());
                     }
                 }

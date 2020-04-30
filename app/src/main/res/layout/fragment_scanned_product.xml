@@ -83,6 +83,32 @@
             app:layout_constraintStart_toEndOf="@+id/textView6"
             app:layout_constraintTop_toBottomOf="@+id/productQuantity" />
 
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="53dp"
+            android:layout_marginTop="48dp"
+            android:text="Quantity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <EditText
+            android:id="@+id/quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="149dp"
+            android:layout_marginTop="108dp"
+            android:layout_marginEnd="118dp"
+            android:layout_marginBottom="123dp"
+            android:text="1"
+            app:layout_constraintBottom_toTopOf="@+id/addCart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/productQuantity"
+            app:layout_constraintVertical_bias="0.0" />
+
         <Button
             android:id="@+id/addCart"
             android:layout_width="wrap_content"

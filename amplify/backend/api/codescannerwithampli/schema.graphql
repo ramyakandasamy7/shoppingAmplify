@@ -12,3 +12,10 @@ type Product @model {
   quantity: Float
   price: Float
 }
+type Cart @model {
+  id: ID!
+  user: String
+  paid: Float
+  storename: String
+  product: String
+}

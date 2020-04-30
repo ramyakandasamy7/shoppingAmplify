@@ -23,6 +23,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Out" />
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintTop_toBottomOf="@+id/button2"/>
+
+        <Button
+            android:id="@+id/button3"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use Previous"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

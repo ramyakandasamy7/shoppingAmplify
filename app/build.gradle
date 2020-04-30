@@ -10,7 +10,7 @@ android {
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.example.codescannerwithamplify"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -45,6 +45,13 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:16.0.0'
     implementation 'me.dm7.barcodescanner:zxing:1.9'
     def nav_version = "2.3.0-alpha04"
+
+    // Mobile Client for initializing the SDK
+    implementation('com.amazonaws:aws-android-sdk-mobile-client:2.8.+@aar') { transitive = true }
+// Cognito UserPools for SignIn
+    implementation('com.amazonaws:aws-android-sdk-auth-userpools:2.8.+@aar') { transitive = true }
+// Sign in UI Library
+    implementation('com.amazonaws:aws-android-sdk-auth-ui:2.8.+@aar') { transitive = true }
 
     // Java language implementation
     implementation "androidx.navigation:navigation-fragment:$nav_version"

@@ -11,9 +11,16 @@ subscription OnCreateStore {
         barcode
         quantity
         price
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 subscription OnUpdateStore {
@@ -28,9 +35,16 @@ subscription OnUpdateStore {
         barcode
         quantity
         price
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 subscription OnDeleteStore {
@@ -45,9 +59,16 @@ subscription OnDeleteStore {
         barcode
         quantity
         price
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 subscription OnCreateProduct {
@@ -61,10 +82,17 @@ subscription OnCreateProduct {
       location
       products {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
     }
     quantity
     price
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 subscription OnUpdateProduct {
@@ -78,10 +106,17 @@ subscription OnUpdateProduct {
       location
       products {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
     }
     quantity
     price
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 subscription OnDeleteProduct {
@@ -95,9 +130,52 @@ subscription OnDeleteProduct {
       location
       products {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
     }
     quantity
     price
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnCreateCart {
+  onCreateCart {
+    id
+    user
+    paid
+    storename
+    product
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateCart {
+  onUpdateCart {
+    id
+    user
+    paid
+    storename
+    product
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteCart {
+  onDeleteCart {
+    id
+    user
+    paid
+    storename
+    product
+    _version
+    _deleted
+    _lastChangedAt
   }
 }

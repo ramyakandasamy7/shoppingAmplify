@@ -1,4 +1,32 @@
 # this is an auto generated file. This will be overwritten
+query SyncStores(
+  $filter: ModelStoreFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncStores(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      name
+      location
+      products {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}
 query GetStore($id: ID!) {
   getStore(id: $id) {
     id
@@ -11,9 +39,16 @@ query GetStore($id: ID!) {
         barcode
         quantity
         price
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 query ListStores(
@@ -28,9 +63,48 @@ query ListStores(
       location
       products {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
     }
     nextToken
+    startedAt
+  }
+}
+query SyncProducts(
+  $filter: ModelProductFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncProducts(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      name
+      barcode
+      store {
+        id
+        name
+        location
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      quantity
+      price
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
   }
 }
 query GetProduct($id: ID!) {
@@ -44,10 +118,17 @@ query GetProduct($id: ID!) {
       location
       products {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
     }
     quantity
     price
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 query ListProducts(
@@ -64,10 +145,75 @@ query ListProducts(
         id
         name
         location
+        _version
+        _deleted
+        _lastChangedAt
       }
       quantity
       price
+      _version
+      _deleted
+      _lastChangedAt
     }
     nextToken
+    startedAt
+  }
+}
+query SyncCarts(
+  $filter: ModelCartFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncCarts(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      user
+      paid
+      storename
+      product
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetCart($id: ID!) {
+  getCart(id: $id) {
+    id
+    user
+    paid
+    storename
+    product
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+query ListCarts(
+  $filter: ModelCartFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCarts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      user
+      paid
+      storename
+      product
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
   }
 }

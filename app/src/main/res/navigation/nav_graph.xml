@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_scanCodeFragment"
             app:destination="@id/scanStoreFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_scannedStoreFragment"
+            app:destination="@id/scannedStoreFragment" />
     </fragment>
     <fragment
         android:id="@+id/scanStoreFragment"
@@ -31,6 +34,12 @@
         <action
             android:id="@+id/action_scanProductFragment_to_scanProduct"
             app:destination="@id/scanProduct" />
+        <action
+            android:id="@+id/action_scannedStoreFragment_to_cartView"
+            app:destination="@id/cartView" />
+        <action
+            android:id="@+id/action_scannedStoreFragment_to_transaction"
+            app:destination="@id/transaction" />
     </fragment>
     <fragment
         android:id="@+id/scanProduct"
@@ -45,5 +54,27 @@
         android:id="@+id/scannedProduct"
         android:name="com.example.codescannerwithamplify.scannedProduct"
         android:label="scannedProduct"
-        tools:layout = "@layout/fragment_scanned_product"/>
+        tools:layout = "@layout/fragment_scanned_product">
+        <action
+            android:id="@+id/action_scannedProduct_to_scannedStoreFragment"
+            app:destination="@id/scannedStoreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartView"
+        android:name="com.example.codescannerwithamplify.CartView"
+        android:label="fragment_cart_view"
+        tools:layout="@layout/fragment_cart_view" >
+        <action
+            android:id="@+id/action_cartView_to_scannedStoreFragment"
+            app:destination="@id/scannedStoreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transaction"
+        android:name="com.example.codescannerwithamplify.transaction"
+        android:label="fragment_transaction"
+        tools:layout="@layout/fragment_transaction" >
+        <action
+            android:id="@+id/action_transaction_to_scannedStoreFragment"
+            app:destination="@id/scannedStoreFragment" />
+    </fragment>
 </navigation>

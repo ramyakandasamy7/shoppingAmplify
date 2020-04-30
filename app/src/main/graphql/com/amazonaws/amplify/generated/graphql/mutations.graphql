@@ -14,9 +14,16 @@ mutation CreateStore(
         barcode
         quantity
         price
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation UpdateStore(
@@ -34,9 +41,16 @@ mutation UpdateStore(
         barcode
         quantity
         price
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation DeleteStore(
@@ -54,9 +68,16 @@ mutation DeleteStore(
         barcode
         quantity
         price
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation CreateProduct(
@@ -73,10 +94,17 @@ mutation CreateProduct(
       location
       products {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
     }
     quantity
     price
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation UpdateProduct(
@@ -93,10 +121,17 @@ mutation UpdateProduct(
       location
       products {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
     }
     quantity
     price
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation DeleteProduct(
@@ -113,9 +148,61 @@ mutation DeleteProduct(
       location
       products {
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
     }
     quantity
     price
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateCart(
+  $input: CreateCartInput!
+  $condition: ModelCartConditionInput
+) {
+  createCart(input: $input, condition: $condition) {
+    id
+    user
+    paid
+    storename
+    product
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateCart(
+  $input: UpdateCartInput!
+  $condition: ModelCartConditionInput
+) {
+  updateCart(input: $input, condition: $condition) {
+    id
+    user
+    paid
+    storename
+    product
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteCart(
+  $input: DeleteCartInput!
+  $condition: ModelCartConditionInput
+) {
+  deleteCart(input: $input, condition: $condition) {
+    id
+    user
+    paid
+    storename
+    product
+    _version
+    _deleted
+    _lastChangedAt
   }
 }

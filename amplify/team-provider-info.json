@@ -23,6 +23,11 @@
             "StackName": "amplify-codescannerwithampli-rebuild-71358",
             "StackId": "arn:aws:cloudformation:us-east-1:903305595860:stack/amplify-codescannerwithampli-rebuild-71358/34aa6eb0-74ec-11ea-8a97-12217e59f19f",
             "AmplifyAppId": "d1qmius55ek1j5"
+        },
+        "categories": {
+            "auth": {
+                "codescannerwithampli272c96e5": {}
+            }
         }
     }
 }

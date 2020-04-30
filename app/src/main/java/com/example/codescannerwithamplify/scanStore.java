@@ -1,6 +1,7 @@
 package com.example.codescannerwithamplify;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -14,6 +15,9 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class scanStore extends Fragment implements ZXingScannerView.ResultHandler {
@@ -45,6 +49,14 @@ public class scanStore extends Fragment implements ZXingScannerView.ResultHandle
         }, 2000);
         Bundle bundle = new Bundle();
         bundle.putString("barcodeID", rawResult.getText());
+
+
+        Context context = getActivity();
+        SharedPreferences sharedPref = context.getSharedPreferences("StoreID", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("StoreID", rawResult.getText()).commit();
+
+
         Navigation.findNavController(getView()).navigate(R.id.action_scanCodeFragment_to_scanProductFragment, bundle);
 
     }

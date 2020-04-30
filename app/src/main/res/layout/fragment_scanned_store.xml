@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="130dp"
@@ -23,6 +25,20 @@
             app:layout_constraintHorizontal_bias="0.537"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttoncart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shopping Cart"
+             />
+
+        <Button
+            android:id="@+id/transaction_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transaction"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/scanProduct"

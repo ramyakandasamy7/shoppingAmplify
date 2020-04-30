@@ -1,6 +1,7 @@
 package com.example.codescannerwithamplify;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.amplifyframework.api.graphql.GraphQLResponse;
@@ -19,8 +21,12 @@ import com.amplifyframework.api.graphql.MutationType;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.core.ResultListener;
 import com.amplifyframework.datastore.generated.model.Product;
+import com.google.gson.Gson;
 
 import java.lang.Runnable;
+import java.util.HashSet;
+import java.util.Set;
+
 public class scannedProduct extends Fragment {
 
 
@@ -53,10 +59,42 @@ public class scannedProduct extends Fragment {
          addtoCart = view.findViewById(R.id.addCart);
          productQuantity = view.findViewById(R.id.productQuantity);
          showProduct(productbarcode, storeID);
+        EditText eText = (EditText) view.findViewById(R.id.quantity);
+
+
          addtoCart.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 reducebyOneProduct(selectedProduct);
+                 String quantity = eText.getText().toString();
+                 boolean remove = false;
+                 Context context = getActivity();
+                 SharedPreferences sharedPref = context.getSharedPreferences("Shopping Cart", Context.MODE_PRIVATE);
+                 SharedPreferences.Editor editor = sharedPref.edit();
+                 Set<String> hs = sharedPref.getStringSet("Shopping Cart", new HashSet<String>());
+                 Set<String> in = new HashSet<String>(hs);
+                 for(String a : in) {
+                     if(remove) {
+                         if(a.contains(selectedProduct.getName())) {
+                             in.remove(a);
+                         }
+                     }
+                 }
+                 in.add(selectedProduct.getName() + ":" + selectedProduct.getPrice()+":"+quantity);
+                 editor.putStringSet("Shopping Cart", in).commit();
+                 Set<String> thecart = sharedPref.getStringSet("Shopping Cart", new HashSet<String>());
+                 for(String s : thecart) {
+                     Log.d("CART", s);
+                 }
+                 reducebyOneProduct(selectedProduct, Integer.parseInt(quantity));
+
+                 Bundle bundle = new Bundle();
+                 Context context2 = getActivity();
+                 SharedPreferences sharedPref2 = context.getSharedPreferences("StoreID", Context.MODE_PRIVATE);
+                 SharedPreferences.Editor editor2 = sharedPref2.edit();
+                 String storeID = sharedPref2.getString("StoreID", "");
+                 String storeName = sharedPref2.getString("StoreName", "");
+                 bundle.putString("barcodeID", storeID);
+                 Navigation.findNavController(view).navigate(R.id.action_scannedProduct_to_scannedStoreFragment, bundle);
              }
         });
          return view;
@@ -85,9 +123,9 @@ public class scannedProduct extends Fragment {
 
     }
 
-    private void reducebyOneProduct (Product p) {
+    private void reducebyOneProduct (Product p, int quantity) {
         Amplify.API.mutate(
-                Product.builder().quantity(p.getQuantity()-1).id(p.getId()).store(p.getStore()).build(),
+                Product.builder().quantity(p.getQuantity()-quantity).id(p.getId()).store(p.getStore()).build(),
                 MutationType.UPDATE,
                 new ResultListener<GraphQLResponse<Product>>() {
                     @Override
