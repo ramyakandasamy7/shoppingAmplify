@@ -71,7 +71,7 @@ public class mainFragment extends Fragment {
         });
 
         TextView textView = (TextView) view.findViewById(R.id.textView3);
-        textView.setText("Username: " + AWSMobileClient.getInstance().getUsername());
+        textView.setText(AWSMobileClient.getInstance().getUsername());
         signout = (Button) view.findViewById(R.id.button2);
         signout.setOnClickListener(new View.OnClickListener() {
             @Override

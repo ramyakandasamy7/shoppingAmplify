@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.amazonaws.mobile.client.AWSMobileClient;
@@ -29,8 +32,12 @@ import com.amplifyframework.datastore.generated.model.Cart;
 import com.amplifyframework.datastore.generated.model.Product;
 import com.amplifyframework.datastore.generated.model.Store;
 
+import org.w3c.dom.Text;
+
 import java.io.StringBufferInputStream;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -176,20 +183,108 @@ public class CartView extends Fragment {
             }
         });
 
-        TextView textView = (TextView) view.findViewById(R.id.itemText);
+        //TextView textView = (TextView) view.findViewById(R.id.itemText);
         Context context = getActivity();
         //String cart_string = "Shopping Cart:";
         String cart_string = "";
         SharedPreferences sharedPref = context.getSharedPreferences("Shopping Cart", Context.MODE_PRIVATE);
         Set<String> thecart = sharedPref.getStringSet("Shopping Cart", new HashSet<String>());
         System.out.println(thecart);
+
+        //Table Layout Attempt
+        TableLayout tl = view.findViewById(R.id.shoppingCartTable);
+        tl.setStretchAllColumns(true);
+
+        List<String> prices = new ArrayList<String>();
+
         for(String s : thecart) {
-            String itemName = s.split(":")[0];
+            String itemName  = s.split(":")[0];
             String itemPrice = s.split(":")[1];
-            String itemQty = s.split(":")[2];
-            cart_string = cart_string + "\n" + String.format("%s - %s - %s", itemName, itemQty, itemPrice);
+            String itemQty   = s.split(":")[2];
+            prices.add(itemPrice);
+            //cart_string = cart_string + "\n" + String.format("%s - %s - %s", itemName, itemQty, itemPrice);
+
+            TableRow tr      = new TableRow(context);
+            TextView tvName  = new TextView(context);
+            TextView tvQty   = new TextView(context);
+            TextView tvPrice = new TextView(context);
+            TextView xer     = new TextView(context);
+
+            tvQty.setGravity(Gravity.RIGHT);
+            tvPrice.setGravity(Gravity.RIGHT);
+            xer.setGravity(Gravity.CENTER);
+
+            tvName.setText(itemName);
+            tvQty.setText(itemQty);
+            tvPrice.setText(itemPrice);
+            xer.setText("x");
+
+            tr.addView(tvName);
+            tr.addView(tvQty);
+            tr.addView(xer);
+            tr.addView(tvPrice);
+
+            tl.addView(tr);
+
         }
-        textView.setText(cart_string);
+
+        Float tax = 9.25f; //San Jose Sales Tax
+        Float taxPaid = 0f;
+        Float subtotal = 0f, total = 0f;
+
+        TextView subtxt = new TextView(context);
+        subtxt.setGravity(Gravity.RIGHT);
+        TextView subval = new TextView(context);
+        subval.setGravity(Gravity.RIGHT);
+        TextView taxtxt = new TextView(context);
+        taxtxt.setGravity(Gravity.RIGHT);
+        TextView taxval = new TextView(context);
+        taxval.setGravity(Gravity.RIGHT);
+        TextView tottxt = new TextView(context);
+        tottxt.setGravity(Gravity.RIGHT);
+        TextView totval = new TextView(context);
+        totval.setGravity(Gravity.RIGHT);
+
+        subtxt.setText("Subtotal");
+        taxtxt.setText("Tax 9.25%");
+        tottxt.setText("Total");
+
+        for (String p:
+             prices) {
+            Float price = Float.parseFloat(p);
+            subtotal += price;
+        }
+
+        taxPaid = ((tax/100) * subtotal);
+        total = taxPaid + subtotal;
+
+        subval.setText(String.format("$%.2f",subtotal));
+        taxval.setText(String.format("$%.2f",taxPaid));
+        totval.setText(String.format("$%.2f",total));
+
+        TableRow trSub = new TableRow(context);
+        TableRow trTax = new TableRow(context);
+        TableRow trTot = new TableRow(context);
+
+        trSub.addView(subtxt);
+        trSub.addView(subval);
+        TableRow.LayoutParams sublptxt = (TableRow.LayoutParams) subtxt.getLayoutParams();
+        sublptxt.span = 3;
+        tl.addView(trSub);
+
+        trTax.addView(taxtxt);
+        trTax.addView(taxval);
+        TableRow.LayoutParams taxlptxt = (TableRow.LayoutParams) taxtxt.getLayoutParams();
+        taxlptxt.span = 3;
+        tl.addView(trTax);
+
+        trTot.addView(tottxt);
+        trTot.addView(totval);
+        TableRow.LayoutParams totlptxt = (TableRow.LayoutParams) tottxt.getLayoutParams();
+        totlptxt.span = 3;
+        tl.addView(trTot);
+
+        //textView.setText(cart_string);
         /*recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
 
         ListAdapter listAdapter = new ListAdapter();
