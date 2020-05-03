@@ -10,8 +10,10 @@
 
 ## Distribution of Work
 
-Ramya - I created Amplify backend environmen and connected the environment to basic front-end UI. I also added scanning functionality for store and the scanning functionality for products
 
-Raymond - Raymond added user authentication, the ability to view previously selected store, and shopping cart functionality using shared preferences
+Jed - Jed did much of the UI design and table layouts as well as adding elements like taxes to transations. 
 
-Jed - Jed did much of the UI design 
+Ramya - Ramya created Amplify backend environment and connected the environment to basic front-end UI (created the navigation graph and a few of the fragments). She added QR scanning functionality for store and QR scanning functionality for products
+
+Raymond - Raymond added user authentication, view transactions, and shopping cart functionality using shared preferences
+
