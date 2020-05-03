@@ -29,6 +29,7 @@ import com.amplifyframework.datastore.generated.model.Cart;
 import com.amplifyframework.datastore.generated.model.Product;
 import com.amplifyframework.datastore.generated.model.Store;
 
+import java.io.StringBufferInputStream;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -175,15 +176,18 @@ public class CartView extends Fragment {
             }
         });
 
-
-
         TextView textView = (TextView) view.findViewById(R.id.itemText);
         Context context = getActivity();
-        String cart_string = "Shopping Cart:";
+        //String cart_string = "Shopping Cart:";
+        String cart_string = "";
         SharedPreferences sharedPref = context.getSharedPreferences("Shopping Cart", Context.MODE_PRIVATE);
         Set<String> thecart = sharedPref.getStringSet("Shopping Cart", new HashSet<String>());
+        System.out.println(thecart);
         for(String s : thecart) {
-            cart_string = cart_string + "\n" + s;
+            String itemName = s.split(":")[0];
+            String itemPrice = s.split(":")[1];
+            String itemQty = s.split(":")[2];
+            cart_string = cart_string + "\n" + String.format("%s - %s - %s", itemName, itemQty, itemPrice);
         }
         textView.setText(cart_string);
         /*recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);

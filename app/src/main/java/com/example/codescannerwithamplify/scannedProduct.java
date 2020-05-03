@@ -28,8 +28,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class scannedProduct extends Fragment {
-
-
     TextView productName;
     TextView productQuantity;
     TextView productPrice;
@@ -53,13 +51,13 @@ public class scannedProduct extends Fragment {
          String productbarcode = getArguments().getString("productBarcode");
          Log.i ("input string is" , productbarcode);
          String storeID = getArguments().getString("storeID");
-        Log.i ("Store ID is" , storeID);
+         Log.i ("Store ID is" , storeID);
          productName = view.findViewById(R.id.productName);
          productPrice = view.findViewById(R.id.price);
          addtoCart = view.findViewById(R.id.addCart);
          productQuantity = view.findViewById(R.id.productQuantity);
          showProduct(productbarcode, storeID);
-        EditText eText = (EditText) view.findViewById(R.id.quantity);
+         EditText eText = (EditText) view.findViewById(R.id.quantity);
 
 
          addtoCart.setOnClickListener(new View.OnClickListener() {
@@ -148,9 +146,11 @@ public class scannedProduct extends Fragment {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                productQuantity.setText(p.getQuantity().toString());
+                String price = String.format("$%.2f/unit", p.getPrice());
+                String inStock = String.format("%d", Math.round(p.getQuantity()));
+                productQuantity.setText(inStock);
                 productName.setText(p.getName());
-                productPrice.setText(p.getPrice().toString());
+                productPrice.setText(price);
             }
         });
     }
