@@ -9,6 +9,7 @@ import android.util.Log;
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.Callback;
 import com.amazonaws.mobile.client.SignInUIOptions;
+import com.amazonaws.mobile.client.SignOutOptions;
 import com.amazonaws.mobile.client.UserStateDetails;
 import com.example.codescannerwithamplify.MainActivity;
 import com.example.codescannerwithamplify.R;
@@ -36,8 +37,19 @@ public class Authenticate extends AppCompatActivity {
                         showSignIn();
                         break;
                     default:
-                        AWSMobileClient.getInstance().signOut();
-                        showSignIn();
+                        AWSMobileClient.getInstance().signOut(SignOutOptions.builder().signOutGlobally(true).build(), new Callback<Void>() {
+                            @Override
+                            public void onResult(final Void result) {
+                                Log.d(TAG, "why aren't you signed out?");
+                                showSignIn();
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+                                Log.e(TAG, "sign-out error", e);
+                            }
+                        });
+                        //showSignIn();
                         break;
                 }
             }

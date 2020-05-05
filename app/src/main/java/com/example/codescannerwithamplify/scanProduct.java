@@ -27,6 +27,7 @@ public class scanProduct extends Fragment implements ZXingScannerView.ResultHand
     //Product selectedProduct;
     String storeID;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mScannerView = new ZXingScannerView(getActivity());

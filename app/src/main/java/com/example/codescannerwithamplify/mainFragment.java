@@ -8,9 +8,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -40,7 +44,6 @@ public class mainFragment extends Fragment {
     Button signout;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,7 +60,7 @@ public class mainFragment extends Fragment {
                 public void onClick(View view) {
                     Bundle bundle = new Bundle();
                     bundle.putString("barcodeID", storeID);
-                    Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_scannedStoreFragment, bundle);
+                    //Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_scannedStoreFragment, bundle);
                 }
             });
         }
@@ -69,8 +72,8 @@ public class mainFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_scanCodeFragment);
             }
         });
-
         TextView textView = (TextView) view.findViewById(R.id.textView3);
+//        Log.i("name is", AWSMobileClient.getInstance().getUsername().toString());
         textView.setText(AWSMobileClient.getInstance().getUsername());
         signout = (Button) view.findViewById(R.id.button2);
         signout.setOnClickListener(new View.OnClickListener() {
@@ -78,9 +81,9 @@ public class mainFragment extends Fragment {
             public void onClick(View view) {
                 AWSMobileClient.getInstance().signOut();
                 IdentityManager.getDefaultIdentityManager().signOut();
+               // Navigation.findNavController(view).navigate(R.id.)
             }
         });
-
         return view;
     }
 

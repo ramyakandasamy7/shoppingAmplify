@@ -73,6 +73,7 @@ public class scannedStore extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
     }
 
     @Override
@@ -103,6 +104,7 @@ public class scannedStore extends Fragment {
 
             @Override
             public void onError(Throwable throwable) {
+                //btn = view.findViewById(R.id.scanProduct);
                 Log.e("Was not able to get", throwable.getMessage());
                 btn.setVisibility(View.INVISIBLE);
                 setText("There is no store by that name, please try again");

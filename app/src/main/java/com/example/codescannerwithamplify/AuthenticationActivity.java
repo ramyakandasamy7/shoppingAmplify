@@ -22,7 +22,6 @@ public class AuthenticationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
-
         AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback<UserStateDetails>() {
 
 
@@ -49,6 +48,8 @@ public class AuthenticationActivity extends AppCompatActivity {
                         Intent i = new Intent(AuthenticationActivity.this, MainActivity.class);
                         Log.d("myTag", "my Message");
                         startActivity(i);
+                       // i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //startActivityIfNeeded(i, 0);
                         break;
                     case SIGNED_OUT:
                         showSignIn();
