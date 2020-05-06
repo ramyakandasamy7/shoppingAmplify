@@ -1,6 +1,7 @@
 package com.example.codescannerwithamplify;
 
 import android.content.Intent;
+import android.drm.DrmStore;
 import android.os.Bundle;
 import com.amazonaws.mobile.client.AWSMobileClient;
 
@@ -25,16 +26,20 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.renderscript.ScriptGroup;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
@@ -58,8 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this,navController);
+        DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
+        navController = Navigation.findNavController(this, R.id.myNavHostFragment);
+       NavigationUI.setupActionBarWithNavController(this,navController, drawerLayout);
+       NavigationView navView = findViewById(R.id.navView);
+        NavigationUI.setupWithNavController(navView, navController);
         try {
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.configure(getApplicationContext());
@@ -69,9 +77,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
     @Override
     public boolean onSupportNavigateUp() {
-         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+         navController = Navigation.findNavController(this, R.id.myNavHostFragment);
          return navController.navigateUp();
     }
     @Override
