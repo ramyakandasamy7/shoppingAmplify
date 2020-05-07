@@ -5,9 +5,9 @@
     <item
         android:id="@+id/transaction"
         android:icon="@android:drawable/checkbox_on_background"
-        android:title="DrawOne" />
+        android:title="View Transactions" />
     <item
-        android:id="@+id/sample"
+        android:id="@+id/cartView"
         android:icon="@android:drawable/presence_away"
-        android:title="DrawTwo" />
+        android:title="View Shopping Cart" />
 </menu>
